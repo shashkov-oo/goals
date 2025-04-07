@@ -79,6 +79,8 @@ function createTracker(weeks) {
     trackerContainer.innerHTML = '';
 
     const table = document.createElement('table');
+    const daysOfWeek = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+
     table.innerHTML = `
         <tr>
             <th>Неделя</th>
@@ -87,7 +89,7 @@ function createTracker(weeks) {
             <th>Цель</th>
             <th>Факт</th>
             <th>Выполнение</th>
-            ${Array.from({length: 7}, (_, i) => `<th>День ${i+1}</th>`).join('')}
+            ${daysOfWeek.map(day => `<th>${day}</th>`).join('')}
         </tr>
     `;
 
