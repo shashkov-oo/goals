@@ -4,24 +4,58 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 15px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    position: relative;
+}
+
+:root {
+    --bg-color: #2D2D3A;
+    --text-color: #ffffff;
+    --secondary-bg: #3E3E4D;
+    --border-color: #555566;
+    --accent-color: #8A2BE2;
+}
+
+.light-theme {
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --secondary-bg: #f8f9fa;
+    --border-color: #ddd;
+    --accent-color: #4CAF50;
+}
+
+#themeToggle {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 8px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 #toggleShowButton {
     width: 100%;
     padding: 12px;
-    margin-bottom: 15px;
-    background: #4CAF50;
+    margin: 8px 0 8px;
+    background: var(--accent-color);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
 }
 
 #mainControls {
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 20px;
+    background-color: var(--secondary-bg);
 }
 
 input, button {
@@ -29,33 +63,18 @@ input, button {
     padding: 10px;
     margin: 5px 0;
     box-sizing: border-box;
-}
-
-.habit-item {
-    padding: 10px;
-    margin: 8px 0;
-    background: #f8f9fa;
-    border-radius: 4px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-    font-size: 14px;
+    background-color: var(--secondary-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
 }
 
 .completion {
+    color: #333;
     font-weight: bold;
+}
+
+.light-theme .completion {
+    color: inherit;
 }
 
 @media (max-width: 600px) {

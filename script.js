@@ -2,8 +2,16 @@ let habits = JSON.parse(localStorage.getItem('habits')) || [];
 let trackerData = JSON.parse(localStorage.getItem('trackerData')) || {};
 let weeks = parseInt(localStorage.getItem('weeks')) || 1;
 
-// Инициализация интерфейса
-document.getElementById('weeks').value = weeks;
+// Инициализация темы
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.body.classList.toggle('light-theme', savedTheme === 'light');
+
+// Переключение темы
+document.getElementById('themeToggle').addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    const isLight = document.body.classList.contains('light-theme');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+});
 
 // Управление видимостью блока
 document.getElementById('toggleShowButton').addEventListener('click', function() {
@@ -87,7 +95,7 @@ function createTracker(weeks) {
         habits.forEach((habit, habitIndex) => {
             const row = document.createElement('tr');
             const checkedCount = Object.keys(trackerData)
-                .filter(key => key.startsWith(`${habitIndex}-${week}-`))
+                .filter(key => key.startsWith(`${habitIndex}-${week}-`) && trackerData[key])
                 .length;
 
             const completion = habit.goal > 0 
@@ -119,9 +127,14 @@ function createTracker(weeks) {
 
 // Обновление данных чекбокса
 function updateFact(checkbox, habitIndex, week, day) {
-    trackerData[`${habitIndex}-${week}-${day}`] = checkbox.checked;
+    const key = `${habitIndex}-${week}-${day}`;
+    if (checkbox.checked) {
+        trackerData[key] = true;
+    } else {
+        delete trackerData[key];
+    }
     localStorage.setItem('trackerData', JSON.stringify(trackerData));
-    createTracker(weeks); // Пересоздаем таблицу для обновления данных
+    createTracker(weeks);
 }
 
 // Цвет выполнения
@@ -144,7 +157,9 @@ function saveHabits() {
 // Инициализация
 window.onload = () => {
     displayCurrentHabits();
-    if (habits.length > 0) createTracker(weeks);
-    document.getElementById('mainControls').style.display = 'block';
-    document.getElementById('toggleShowButton').textContent = 'Скрыть генерацию';
+    if (habits.length > 0) {
+        document.getElementById('mainControls').style.display = 'none';
+        document.getElementById('toggleShowButton').textContent = 'Показать генерацию';
+    }
+    createTracker(weeks);
 };
