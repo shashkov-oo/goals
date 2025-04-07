@@ -87,3 +87,15 @@ input, button {
         padding: 10px;
     }
 }
+
+.week-separator td {
+    height: 25px;
+    background-color: transparent !important;
+    border: none;
+    padding: 0;
+}
+
+.week-separator {
+    background-color: var(--bg-color);
+    opacity: 0.3;
+}

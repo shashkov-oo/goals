@@ -121,6 +121,12 @@ function createTracker(weeks) {
             `;
             table.appendChild(row);
         });
+
+        // Добавление разделителя недель
+        const separatorRow = document.createElement('tr');
+        separatorRow.className = 'week-separator';
+        separatorRow.innerHTML = '<td colspan="13"></td>';
+        table.appendChild(separatorRow);
     }
     trackerContainer.appendChild(table);
 }
