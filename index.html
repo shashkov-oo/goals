@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <title>Трекер привычек</title>
+</head>
+<body>
+    <h1>Трекер привычек</h1>
+    <button id="toggleShowButton">Показать генерацию</button>
+    
+    <!-- Основной блок для скрытия -->
+    <div id="mainControls">
+        <div id="generationBlock">
+            <label for="category">Категория:</label>
+            <input type="text" id="category" placeholder="Введите категорию">
+            <label for="habit">Привычка:</label>
+            <input type="text" id="habit" placeholder="Введите привычку">
+            <label for="goal">Цель:</label>
+            <input type="number" id="goal" placeholder="Введите цель">
+            <button id="addHabit">Добавить привычку</button>
+        </div>
+
+        <div id="currentHabits"></div>
+
+        <div class="controls">
+            <label for="weeks">Количество недель:</label>
+            <input type="number" id="weeks" min="1" value="1">
+            <button id="createTracker">Создать трекер</button>
+            <button id="clearCheckboxes">Очистить чекбоксы</button>
+        </div>
+    </div>
+
+    <div id="trackerContainer"></div>
+    <script src="script.js"></script>
+</body>
+</html>
